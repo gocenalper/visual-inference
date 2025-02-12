@@ -24,35 +24,43 @@
 ```bash
 git clone git@github.com:gocenalper/visual-inference.git
 cd visual-inference
+```
 
-🐳 Running with Docker
-We provide a lightweight Docker image for running the model without manually installing dependencies.
+### **2️⃣ Install Dependencies (For Local Usage)**
+```bash
+pip install torch torchvision timm tqdm pillow
+```
 
-1️⃣ Build the Docker Image
-bash
-Copy
-Edit
+---
+
+## 🐳 Running with Docker
+
+We provide a **lightweight Docker image** for running the model without manually installing dependencies.
+
+### **1️⃣ Build the Docker Image**
+```bash
 docker build -t dfdc-inference .
-2️⃣ Run the Docker Container (Mounting Dataset & Code)
-Run the following command to mount your dataset and code inside the container:
+```
 
-bash
-Copy
-Edit
+### **2️⃣ Run the Docker Container (Mounting Dataset & Code)**
+Run the following command to **mount your dataset and code inside the container**:
+```bash
 docker run --rm -it -v "$(pwd)":/app dfdc-inference
-3️⃣ Run with GPU Support (Optional)
-If your machine has CUDA-enabled GPUs, use:
+```
 
-bash
-Copy
-Edit
+### **3️⃣ Run with GPU Support (Optional)**
+If your machine has **CUDA-enabled GPUs**, use:
+```bash
 docker run --gpus all --rm -it -v "$(pwd)":/app dfdc-inference
-🖼 Dataset Structure
-The dataset should be mounted in the following format:
+```
 
-markdown
-Copy
-Edit
+---
+
+## 🖼 Dataset Structure
+
+The dataset should be **mounted** in the following format:
+
+```
 /DFDC/
     ├── REAL/
     │   ├── TRAIN/
@@ -69,12 +77,15 @@ Edit
     │   │   │   ├── frame_02.jpg
     │   ├── TEST/
     │   ├── VAL/
-🚀 Running Inference
-Once the Docker container is running, the model will process test images and print real-time statistics:
+```
 
-yaml
-Copy
-Edit
+---
+
+## 🚀 Running Inference
+
+Once the **Docker container is running**, the model will process **test images** and print real-time statistics:
+
+```
 🔍 Running Untrained Model Inference on Test Data...
 
 📌 Image 1: Predicted = FAKE, Actual = REAL, ❌ Incorrect
@@ -87,4 +98,11 @@ Edit
 🟢 Real Predictions: 500 (50.0%)
 🔴 Fake Predictions: 500 (50.0%)
 ✅ Correct Predictions: 495 (49.5%) Accuracy
+```
 
+---
+
+## 🛠 Troubleshooting
+
+### **1️⃣ Docker Build Fails: "No space left on device"**
+Run
