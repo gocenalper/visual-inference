@@ -24,3 +24,67 @@
 ```bash
 git clone git@github.com:gocenalper/visual-inference.git
 cd visual-inference
+
+🐳 Running with Docker
+We provide a lightweight Docker image for running the model without manually installing dependencies.
+
+1️⃣ Build the Docker Image
+bash
+Copy
+Edit
+docker build -t dfdc-inference .
+2️⃣ Run the Docker Container (Mounting Dataset & Code)
+Run the following command to mount your dataset and code inside the container:
+
+bash
+Copy
+Edit
+docker run --rm -it -v "$(pwd)":/app dfdc-inference
+3️⃣ Run with GPU Support (Optional)
+If your machine has CUDA-enabled GPUs, use:
+
+bash
+Copy
+Edit
+docker run --gpus all --rm -it -v "$(pwd)":/app dfdc-inference
+🖼 Dataset Structure
+The dataset should be mounted in the following format:
+
+markdown
+Copy
+Edit
+/DFDC/
+    ├── REAL/
+    │   ├── TRAIN/
+    │   │   ├── video_0001/
+    │   │   │   ├── frame_01.jpg
+    │   │   │   ├── frame_02.jpg
+    │   │   ├── video_0002/
+    │   ├── TEST/
+    │   ├── VAL/
+    ├── FAKE/
+    │   ├── TRAIN/
+    │   │   ├── video_0003/
+    │   │   │   ├── frame_01.jpg
+    │   │   │   ├── frame_02.jpg
+    │   ├── TEST/
+    │   ├── VAL/
+🚀 Running Inference
+Once the Docker container is running, the model will process test images and print real-time statistics:
+
+yaml
+Copy
+Edit
+🔍 Running Untrained Model Inference on Test Data...
+
+📌 Image 1: Predicted = FAKE, Actual = REAL, ❌ Incorrect
+📌 Image 2: Predicted = REAL, Actual = FAKE, ❌ Incorrect
+📌 Image 3: Predicted = REAL, Actual = REAL, ✅ Correct
+📌 Image 4: Predicted = FAKE, Actual = FAKE, ✅ Correct
+
+📊 **Inference Statistics (Before Training)**
+🔹 Total Images Processed: 1000
+🟢 Real Predictions: 500 (50.0%)
+🔴 Fake Predictions: 500 (50.0%)
+✅ Correct Predictions: 495 (49.5%) Accuracy
+
