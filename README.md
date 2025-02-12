@@ -102,7 +102,3 @@ Once the **Docker container is running**, the model will process **test images**
 
 ---
 
-## 🛠 Troubleshooting
-
-### **1️⃣ Docker Build Fails: "No space left on device"**
-Run
